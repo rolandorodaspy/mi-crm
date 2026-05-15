@@ -35,12 +35,16 @@ router.post('/leads', (req, res) => {
 
 // Actualizar estado de un lead
 router.put('/leads/:id', (req, res) => {
-  const { estado } = req.body;
+  const { nombre, email, telefono, empresa, estado } = req.body;
   const { id } = req.params;
 
+  if (!nombre || !email) {
+    return res.status(400).json({ error: 'Nombre y email son requeridos' });
+  }
+
   try {
-    const stmt = db.prepare('UPDATE leads SET estado = ? WHERE id = ?');
-    stmt.run(estado, id);
+    const stmt = db.prepare('UPDATE leads SET nombre = ?, email = ?, telefono = ?, empresa = ?, estado = ? WHERE id = ?');
+    stmt.run(nombre, email, telefono, empresa, estado, id);
     res.json({ message: 'Lead actualizado exitosamente' });
   } catch (err) {
     res.status(500).json({ error: err.message });

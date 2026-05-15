@@ -582,8 +582,30 @@
         }
 
         function editLead(id) {
-            // Implementar edición de lead
-            alert('Funcionalidad de edición en desarrollo');
+            // Buscar el lead en la tabla actual
+            const leadsBody = document.getElementById('leads-body');
+            const row = leadsBody.querySelector(`tr:nth-child(${id})`);
+            
+            // Obtener los datos del lead de la fila
+            const cells = row.querySelectorAll('td');
+            const nombre = cells[0].textContent;
+            const email = cells[1].textContent;
+            const telefono = cells[2].textContent === '-' ? '' : cells[2].textContent;
+            const empresa = cells[3].textContent === '-' ? '' : cells[3].textContent;
+            const estadoBadge = cells[4].querySelector('.badge');
+            const estado = estadoBadge.textContent.toLowerCase();
+            
+            // Llenar el formulario con los datos del lead
+            document.getElementById('lead-id').value = id;
+            document.getElementById('lead-nombre').value = nombre;
+            document.getElementById('lead-email').value = email;
+            document.getElementById('lead-telefono').value = telefono;
+            document.getElementById('lead-empresa').value = empresa;
+            document.getElementById('lead-estado').value = estado;
+            document.getElementById('modal-title').textContent = 'Editar Lead';
+            
+            // Abrir el modal
+            openModal('lead');
         }
 
         // Form Submissions
