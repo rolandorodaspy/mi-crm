@@ -1,0 +1,24 @@
+{
+  "name": "crm-pro",
+  "version": "1.0.0",
+  "description": "CRM con landing page para gestión de clientes y leads",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "crm",
+    "leads",
+    "clientes"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}
